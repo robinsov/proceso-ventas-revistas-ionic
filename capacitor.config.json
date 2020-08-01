@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "comer-app-android",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

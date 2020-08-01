@@ -1,0 +1,7 @@
+{
+  "name": "comer-app-android",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
