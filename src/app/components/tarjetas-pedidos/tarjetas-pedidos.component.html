@@ -1,0 +1,77 @@
+<!-- <div *ngIf="!pedidosCargados">
+    <ion-label>Productos pedidos por:</ion-label>
+    <ion-chip color="primary">{{nombreCliente}}</ion-chip>
+  </div> -->
+
+<ion-card
+  *ngFor="let pedido of pedidos"
+  mode="ios"
+  color="light">
+  <ion-card-header>
+    <ion-card-title>{{pedido.cliente.nombre}}</ion-card-title>
+    <ion-card-subtitle>{{pedido.nombreProducto}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Cantidad:</ion-label>
+      <ion-badge color="light">{{pedido.cantidad}}</ion-badge>
+    </ion-item>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Fecha:</ion-label>
+      <ion-badge color="light">{{pedido.fechaPedido}}</ion-badge>
+    </ion-item>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Entregado:</ion-label>
+      <ion-badge
+        color="light"
+        *ngIf="!pedido.entregado">
+        No
+      </ion-badge>
+      <ion-badge
+        color="light"
+        *ngIf="pedido.entregado">
+        Si
+      </ion-badge>
+    </ion-item>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Código del producto:</ion-label>
+      <ion-badge color="light">{{pedido.codigoProducto}}</ion-badge>
+    </ion-item>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Proveedor:</ion-label>
+      <ion-badge color="light">{{pedido.proveedor}}</ion-badge>
+    </ion-item>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Precio unitario:</ion-label>
+      <ion-badge color="light">
+        {{pedido.precioUnitario |currency:'COP'}}
+      </ion-badge>
+    </ion-item>
+    <ion-item
+      lines="none"
+      color="light">
+      <ion-label>Precio total:</ion-label>
+      <ion-badge color="light">{{pedido.precioTotal |currency:'COP'}}</ion-badge>
+    </ion-item>
+
+    <ion-button
+      [routerLink]="['/tabs/pedido', pedido._id]"
+      expand="block"
+      shape="round">
+      Editar Pedido
+    </ion-button>
+
+  </ion-card-content>
+</ion-card>

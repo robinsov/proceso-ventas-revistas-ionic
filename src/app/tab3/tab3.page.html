@@ -1,17 +1,111 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Abonos"></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-searchbar
+    *ngIf="!abonosPorId"
+    placeholder="Buscar Cliente"
+    (ionChange)="buscar($event)"
+    [debounce]="250">
+  </ion-searchbar>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-button
+    expand="full"
+    (click)="hacerAbono(idCliente)">
+    <ion-icon
+      slot="start"
+      name="trending-up-outline"></ion-icon>
+    Abonar
+  </ion-button>
+
+  <ion-card
+    color="danger"
+    *ngIf="idCliente !== 'no-cliente'">
+    <ion-item class="center">
+      <ion-icon
+        name="cash-outline"
+        slot="center"></ion-icon>
+      <ion-label>Deuda Total</ion-label>
+    </ion-item>
+
+    <ion-card-content *ngIf="deudaTotalDelCliente">
+      <h2 class="center"> {{deudaTotalDelCliente.monto|currency:'COP $'}} </h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let abono of abonos">
+
+    <ion-card-header>
+      <ion-card-subtitle>{{abono.fechaCreacion}}</ion-card-subtitle>
+      <ion-card-title *ngIf="!abonosPorId">Abono de {{abono.cliente['nombre']}}</ion-card-title>
+      <ion-card-title *ngIf="abonosPorId">Abono de {{nombreCliente}}</ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Saldo Anterior</ion-label>
+        <ion-badge
+          color="warning"
+          slot="end">
+          {{abono.deudaAnterior|currency:'COP  $':'symbol':'3.0'}}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Abonó</ion-label>
+        <ion-badge
+          color="primary"
+          slot="end">
+          {{abono.monto|currency:'COP  $':'symbol':'3.0'}}
+        </ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nuevo Saldo</ion-label>
+        <ion-badge
+          color="danger"
+          slot="end">
+          {{abono.deudaActual|currency:"COP  $":"symbol":'3.0'}}
+        </ion-badge>
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-list *ngIf="abonos.length === 0">
+    <ion-item
+      lines="none"
+      *ngFor="let item of [1,1,1,1,1,1,1,1,1,1,1,1,1]">
+      <ion-label>
+        <h3>
+                    <ion-skeleton-text
+            animated
+            style="width: 70%">
+          </ion-skeleton-text>
+                    <p>
+                        <ion-skeleton-text
+              animated
+              style="width: 100%"></ion-skeleton-text>
+                    </p>
+                </h3>
+      </ion-label>
+      <ion-label
+        slot="end"
+        text-right>
+        <ion-skeleton-text
+          animated
+          style="width: 40%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll
+    threshold="150px"
+    (ionInfinite)="siguiente($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>

@@ -1,0 +1,41 @@
+<app-header titulo="Datos del Cliente"></app-header>
+
+<ion-content>
+
+  <div class="contenedor">
+
+    <ion-card color="light">
+      <ion-card-header>
+        <ion-card-subtitle>{{cliente.fechaCreacion}}</ion-card-subtitle>
+        <ion-card-title>{{cliente.nombre}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item color="light">
+          <ion-label>Telefono</ion-label>
+          <ion-badge
+            class="f-16"
+            color="medium">
+            {{cliente.telefono}}
+          </ion-badge>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label>Correo</ion-label>
+          <ion-badge
+            class="f-16"
+            color="medium">
+            {{cliente.email}}
+          </ion-badge>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label>Dirección</ion-label>
+          <ion-badge
+            class="f-16"
+            color="medium">
+            {{cliente.direccion}}
+          </ion-badge>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

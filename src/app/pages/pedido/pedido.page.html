@@ -1,0 +1,127 @@
+<app-header titulo="Formulario de Pedido"></app-header>
+
+<ion-content [fullscreen]="true">
+  <form
+    #formulario="ngForm"
+    [formGroup]="formularioPedido"
+    (ngSubmit)="crearPedido()">
+    <ion-list>
+      <ion-item lines="none">
+        <ion-label position="floating">Nombre del Producto</ion-label>
+        <ion-input
+          formControlName="nombreProducto"
+          type="text"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Cantidad</ion-label>
+
+        <ion-input
+          formControlName="cantidad"
+          type="number">
+        </ion-input>
+        <ion-buttons slot="end">
+          <ion-button
+            color="primary"
+            slot="end"
+            (click)="sumar()"
+            shape="round"
+            fill="solid">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+
+          <ion-button
+            color="primary"
+            slot="end"
+            (click)="restar()"
+            shape="round"
+            fill="solid">
+            <ion-icon name="remove-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input
+          formControlName="precioUnitario"
+          type="number">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Código del producto</ion-label>
+        <ion-input
+          formControlName="codigoProducto"
+          type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating">Proveedor</ion-label>
+        <ion-input
+          formControlName="proveedor"
+          type="text">
+        </ion-input>
+
+      </ion-item>
+      <ion-item *ngIf="!editarPedido">
+        <ion-label>Cliente</ion-label>
+        <ion-item>
+          <ion-label position="floating">Seleccione el cliente</ion-label>
+          <ion-select (ionChange)="clienteSeleccionado($event)">
+            <ion-select-option
+              *ngFor="let cliente of clientes"
+              [value]="cliente._id">
+              {{cliente.nombre}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-item>
+
+      <ion-item
+        lines="none"
+        *ngIf="editarPedido">
+        <ion-label>Cliente</ion-label>
+        <ion-item lines="none">
+          <ion-input
+            slot="end"
+            [disabled]="editarPedido"
+            type="text"
+            [placeholder]="nombreCliente">
+          </ion-input>
+        </ion-item>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Producto Entregado</ion-label>
+        <ion-toggle
+          [disabled]="!editarPedido"
+          (ionChange)="cambio()"
+          color="success"></ion-toggle>
+      </ion-item>
+      <ion-button
+        *ngIf="!editarPedido"
+        expand="full"
+        type="submit"
+        shape="round"
+        [disabled]="formularioPedido.invalid">
+        <ion-icon
+          slot="start"
+          name="save-outline"></ion-icon>
+        Guardar Pedido
+      </ion-button>
+      <ion-button
+        *ngIf="editarPedido"
+        expand="full"
+        type="submit"
+        shape="round"
+        color="success"
+        [disabled]="formularioPedido.invalid">
+        <ion-icon
+          slot="start"
+          name="create-outline"></ion-icon>
+        Actualizar Pedido
+      </ion-button>
+    </ion-list>
+  </form>
+
+</ion-content>
