@@ -99,6 +99,7 @@ export class PedidoPage implements OnInit {
         console.log(resp)
         this.pedidoSrv.nuevoPedido.emit(true);
         this.presentToast('Actualizó Pedido correctamente')
+        this.formularioPedido.reset();
         this.router.navigateByUrl('/tabs/tab2')
       })
     } else {
@@ -106,6 +107,7 @@ export class PedidoPage implements OnInit {
         console.log(resp);
         
         this.presentToast('Se guardo Pedido correctamente')
+        this.formularioPedido.reset();
         this.router.navigateByUrl('/tabs/tab2')
       })
     }

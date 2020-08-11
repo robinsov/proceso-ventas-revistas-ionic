@@ -6,54 +6,57 @@
 </ion-header>
 
 <ion-content padding>
-  <form
-    [formGroup]="formularioAbono"
-    (ngSubmit)="crearAbono()">
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Saldo a Abonar</ion-label>
-        <ion-input
-          formControlName="monto"
-          type="number">
-        </ion-input>
-      </ion-item>
 
-      <ion-item *ngIf="idCliente != 'no-cliente'">
-        <ion-label>Cliente</ion-label>
-        <ion-item lines="none">
-          <ion-label>{{nombreCliente}}</ion-label>
+  <ion-card>
+    <form [formGroup]="formularioAbono">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Saldo a Abonar</ion-label>
+          <ion-input
+            formControlName="monto"
+            type="number">
+          </ion-input>
         </ion-item>
-      </ion-item>
 
-      <ion-item *ngIf="!nombreCliente">
-        <ion-label>Cliente</ion-label>
-        <ion-item lines="none">
-          <ion-label position="floating">Seleccione el cliente</ion-label>
-          <ion-select (ionChange)="clienteSeleccionado($event)">
-            <ion-select-option
-              *ngFor="let cliente of clientes"
-              [value]="cliente._id">
-              {{cliente.nombre}}
-            </ion-select-option>
-          </ion-select>
+        <ion-item *ngIf="idCliente != 'no-cliente'">
+          <ion-label>Cliente</ion-label>
+          <ion-item lines="none">
+            <ion-label>{{nombreCliente}}</ion-label>
+          </ion-item>
         </ion-item>
-      </ion-item>
 
-    </ion-list>
-    <ion-button
-      [disabled]="formularioAbono.invalid"
-      type="submit"
-      expand="block"
-      shape="round"
-      color="primary">
-      <ion-icon
-        slot="start"
-        name="cash-outline">
-      </ion-icon>
-      Abonar
-    </ion-button>
+        <ion-item *ngIf="!nombreCliente">
+          <ion-label>Cliente</ion-label>
+          <ion-item lines="none">
+            <ion-label position="floating">Seleccione el cliente</ion-label>
+            <ion-select (ionChange)="clienteSeleccionado($event)">
+              <ion-select-option
+                *ngFor="let cliente of clientes"
+                [value]="cliente._id">
+                {{cliente.nombre}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-item>
 
-  </form>
+      </ion-list>
+
+    </form>
+  </ion-card>
+
+  <ion-button
+    [disabled]="formularioAbono.invalid"
+    type="buttom"
+    (click)="crearAbono()"
+    expand="block"
+    shape="round"
+    color="primary">
+    <ion-icon
+      slot="start"
+      name="cash-outline">
+    </ion-icon>
+    Abonar
+  </ion-button>
 
   <ion-fab
     vertical="bottom"

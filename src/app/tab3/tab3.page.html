@@ -28,7 +28,7 @@
     </ion-item>
 
     <ion-card-content *ngIf="deudaTotalDelCliente">
-      <h2 class="center"> {{deudaTotalDelCliente.monto|currency:'COP $'}} </h2>
+      <h2 class="center"> {{deudaTotalDelCliente.monto|currency:'$ ':'symbol':'3.0'}} </h2>
     </ion-card-content>
   </ion-card>
 
@@ -43,30 +43,30 @@
 
     <ion-card-content>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>Saldo Anterior</ion-label>
         <ion-badge
           color="warning"
           slot="end">
           {{abono.deudaAnterior|currency:'COP  $':'symbol':'3.0'}}
         </ion-badge>
-      </ion-item>
+      </ion-item> -->
       <ion-item>
         <ion-label>Abonó</ion-label>
         <ion-badge
           color="primary"
           slot="end">
-          {{abono.monto|currency:'COP  $':'symbol':'3.0'}}
+          {{abono.monto|currency:'$ ':'symbol':'3.0'}}
         </ion-badge>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-label>Nuevo Saldo</ion-label>
         <ion-badge
           color="danger"
           slot="end">
           {{abono.deudaActual|currency:"COP  $":"symbol":'3.0'}}
         </ion-badge>
-      </ion-item>
+      </ion-item> -->
 
     </ion-card-content>
 

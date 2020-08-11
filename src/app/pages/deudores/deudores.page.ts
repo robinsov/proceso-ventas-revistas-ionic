@@ -23,7 +23,6 @@ export class DeudoresPage implements OnInit {
       console.log(resp)
       this.deudores = resp;
     })
-    
   }
 
   buscar(event) {
@@ -34,6 +33,12 @@ export class DeudoresPage implements OnInit {
     }
     let clientesEncontrados = this.deudores.filter( d => d.cliente['nombre'].toLowerCase().includes(this.buscarDeudor.toLowerCase()))
     this.deudores = clientesEncontrados;
+  }
+
+  doRefresh(event) {
+    this.getDeudores();
+
+    event.target.complete()
   }
 
 }

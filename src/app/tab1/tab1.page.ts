@@ -53,4 +53,10 @@ export class Tab1Page implements OnInit, OnDestroy {
   }
 
 
+  doRefresh(event) {
+    this.getClientes();
+
+    event.target.complete()
+  }
+
 }

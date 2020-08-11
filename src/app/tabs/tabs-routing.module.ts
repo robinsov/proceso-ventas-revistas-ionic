@@ -40,12 +40,23 @@ const routes: Routes = [
         loadChildren: () => import('../pages/form-cliente/form-cliente.module').then( m => m.FormClientePageModule)
       },
       {
+        path: 'form-cliente/:id',
+        loadChildren: () => import('../pages/form-cliente/form-cliente.module').then( m => m.FormClientePageModule)
+      },
+      {
         path: 'deudores',
         loadChildren: () => import('../pages/deudores/deudores.module').then( m => m.DeudoresPageModule)
       },
       {
         path: 'datos-cliente/:id',
         loadChildren: () => import('../pages/datos-cliente/datos-cliente.module').then( m => m.DatosClientePageModule)
+      }, {
+        path: 'ingresos',
+        loadChildren: () => import('../pages/ingresos/ingresos.module').then( m => m.IngresosPageModule)
+      },
+      {
+        path: 'egresos',
+        loadChildren: () => import('../pages/egresos/egresos.module').then( m => m.EgresosPageModule)
       },
       {
         path: '',

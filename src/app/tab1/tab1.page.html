@@ -28,10 +28,11 @@
 
   <ion-list>
     <ion-item *ngFor="let cliente of clientes; let i = index">
-
+      <!-- <pre> {{cliente|json}} </pre> -->
       <ion-label [routerLink]="['/tabs/datos-cliente', cliente._id]">{{cliente.nombre}}</ion-label>
       <ion-buttons slot="end">
         <ion-button
+          disabled="{{!cliente['pedido']}}"
           color="success"
           [routerLink]="['/tabs/tab3', cliente._id ]"
           shape="round">
@@ -39,6 +40,7 @@
 
         </ion-button>
         <ion-button
+          disabled="{{!cliente['pedido']}}"
           color="danger"
           [routerLink]="['/tabs/tab2', cliente._id ]"
           shape="round">
@@ -76,5 +78,16 @@
       </ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-refresher
+    slot="fixed"
+    (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent"
+      refreshingText="Recargando datos...">
+    </ion-refresher-content>
+  </ion-refresher>
 
 </ion-content>

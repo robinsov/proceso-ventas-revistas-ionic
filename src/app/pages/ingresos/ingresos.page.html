@@ -1,0 +1,92 @@
+<app-header titulo="Ingresos"></app-header>
+
+<ion-content>
+
+  <ion-button
+    (click)="crearConcepto()"
+    expand="full"
+    color="tertiary"
+    shape="round">
+    <ion-icon
+      slot="start"
+      name="add-circle"></ion-icon>
+    crear Nuevo Concepto
+  </ion-button>
+
+  <ion-card
+    class="center"
+    color="danger">
+    <ion-card-header>
+      <ion-card-title>Total Ingresos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2 class="f-large">{{totalRecaudado|currency:'COP  $':'symbol': '3.0'}}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary">Abonos</ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Total</ion-label>
+      <ion-badge
+        color="ligth"
+        slot="end">
+        {{totalAbonos|currency:'$ ':'symbol': '3.0'}}
+      </ion-badge>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list #lista>
+    <ion-item-sliding *ngFor="let ingreso of ingresos">
+
+      <ion-item>
+        <ion-label color="primary">{{ingreso.concepto['descripcion']}}</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>
+          {{ingreso.fechaCreacion|fechaPersonalizada}}
+        </ion-label>
+        <ion-badge
+          color="ligth"
+          slot="end">
+          {{ingreso.monto|currency:'$ ':'symbol': '3.0'}}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="editarIngreso(ingreso, ingreso.concepto['descripcion'])">
+          <ion-icon
+            slot="icon-only"
+            name="create"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="start">
+        <ion-item-option
+          color="danger"
+          (click)="eliminarConfirm(ingreso)">
+          <ion-icon
+            slot="icon-only"
+            name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab
+    (click)="crearIngreso()"
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

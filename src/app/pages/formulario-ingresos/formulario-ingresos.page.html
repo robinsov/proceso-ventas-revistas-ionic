@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Formulario para crear Ingreso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="formularioIngreso">
+      <ion-list>
+
+        <ion-item>
+          <ion-label>{{conceptSeleted}}</ion-label>
+          <ion-button
+            [disabled]="ingreso"
+            (click)="mostrarListaConceptos()"
+            expand="block">
+            Selecciona una categoría
+          </ion-button>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label position="floating">Valor $</ion-label>
+          <ion-input
+            formControlName="monto"
+            type="number">
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+
+    </form>
+  </ion-card>
+
+  <ion-button
+    *ngIf="!ingreso"
+    [disabled]="formularioIngreso.invalid"
+    type="buttom"
+    (click)="crearIngreso()"
+    expand="block"
+    shape="round"
+    color="primary">
+    <ion-icon
+      slot="start"
+      name="save">
+    </ion-icon>
+    Crear Ingreso
+  </ion-button>
+
+  <ion-button
+    *ngIf="ingreso"
+    [disabled]="formularioIngreso.invalid || !formularioIngreso.dirty"
+    type="buttom"
+    (click)="crearIngreso()"
+    expand="block"
+    shape="round"
+    color="tertiary">
+    <ion-icon
+      slot="start"
+      name="create">
+    </ion-icon>
+    Modificar Ingreso
+  </ion-button>
+
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed">
+    <ion-fab-button (click)="regresar()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-fab-button>
+
+  </ion-fab>
+
+</ion-content>

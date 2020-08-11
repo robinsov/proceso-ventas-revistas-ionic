@@ -1,43 +1,44 @@
 <app-header titulo="Formulario de Clientes"></app-header>
 
 <ion-content>
-  <form
-    #formulario="ngForm"
-    [formGroup]="formularioCliente"
-    (ngSubmit)="crearCliente()">
-    <ion-list>
-      <ion-item lines="none">
-        <ion-label position="floating">Nombre del Cliente</ion-label>
-        <ion-input
-          formControlName="nombre"
-          type="text"></ion-input>
-      </ion-item>
+  <ion-card>
+    <form
+      #formulario="ngForm"
+      [formGroup]="formularioCliente"
+      (ngSubmit)="crearCliente()">
+      <ion-list>
+        <ion-item lines="none">
+          <ion-label position="floating">Nombre del Cliente</ion-label>
+          <ion-input
+            formControlName="nombre"
+            type="text"></ion-input>
+        </ion-item>
 
-      <ion-item lines="none">
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input
-          formControlName="email"
-          type="email">
-        </ion-input>
-      </ion-item>
+        <ion-item lines="none">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input
+            formControlName="email"
+            type="email">
+          </ion-input>
+        </ion-item>
 
-      <ion-item lines="none">
-        <ion-label position="floating">Dirección de Residencia</ion-label>
-        <ion-input
-          formControlName="direccion"
-          type="text">
-        </ion-input>
-      </ion-item>
+        <ion-item lines="none">
+          <ion-label position="floating">Dirección de Residencia</ion-label>
+          <ion-input
+            formControlName="direccion"
+            type="text">
+          </ion-input>
+        </ion-item>
 
-      <ion-item lines="none">
-        <ion-label position="floating">N° Celualar del Cliente</ion-label>
-        <ion-input
-          formControlName="telefono"
-          type="text">
-        </ion-input>
-      </ion-item>
+        <ion-item lines="none">
+          <ion-label position="floating">N° Celualar del Cliente</ion-label>
+          <ion-input
+            formControlName="telefono"
+            type="number">
+          </ion-input>
+        </ion-item>
 
-      <!-- <ion-button
+        <!-- <ion-button
         *ngIf="!editarPedido"
         expand="full"
         type="submit"
@@ -49,17 +50,32 @@
         Guardar Pedido
       </ion-button> -->
 
-      <ion-button
-        expand="full"
-        type="submit"
-        shape="round"
-        color="primary"
-        [disabled]="formularioCliente.invalid">
-        <ion-icon
-          slot="start"
-          name="save-outline"></ion-icon>
-        Añadir Cliente
-      </ion-button>
-    </ion-list>
-  </form>
+        <ion-button
+          *ngIf="!idCliente"
+          expand="full"
+          type="submit"
+          shape="round"
+          color="primary"
+          [disabled]="formularioCliente.invalid">
+          <ion-icon
+            slot="start"
+            name="save-outline"></ion-icon>
+          Añadir Cliente
+        </ion-button>
+        <ion-button
+          *ngIf="idCliente"
+          (click)="crearCliente()"
+          expand="full"
+          type="button"
+          shape="round"
+          color="tertiary"
+          [disabled]="formularioCliente.invalid">
+          <ion-icon
+            slot="start"
+            name="create"></ion-icon>
+          Modificar Cliente
+        </ion-button>
+      </ion-list>
+    </form>
+  </ion-card>
 </ion-content>

@@ -1,0 +1,90 @@
+<app-header titulo="Egresos"></app-header>
+
+<ion-content>
+
+  <ion-button
+    (click)="crearConcepto()"
+    expand="full"
+    color="tertiary"
+    shape="round">
+    <ion-icon
+      slot="start"
+      name="add-circle"></ion-icon>
+    crear Nuevo Concepto
+  </ion-button>
+
+  <ion-card
+    class="center"
+    color="danger">
+    <ion-card-header>
+      <ion-card-title>Total Egresos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2 class="f-large">{{totalEgresos|currency:'COP  $':'symbol': '3.0'}}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid fixed>
+    <ion-row *ngFor="let egresoConcepto of egresosPorConceptos">
+      <ion-col size="12">
+        <ion-list>
+
+          <ion-item>
+            <ion-label color="primary">{{egresoConcepto.descripcion}}</ion-label>
+            <ion-badge
+              color="danger"
+              slot="end">
+              {{egresoConcepto.totalSegunConcepto|currency:'$ ':'symbol': '3.0'}}
+            </ion-badge>
+          </ion-item>
+
+          <ion-list #lista>
+            <ion-item-sliding *ngFor="let egreso of egresoConcepto.egreso">
+              <ion-item lines="none">
+                <ion-label>
+                  {{egreso.fechaCreacion|fechaPersonalizada}}
+                </ion-label>
+                <ion-badge
+                  color="ligth"
+                  slot="end">
+                  {{egreso.monto|currency:'$ ':'symbol': '3.0'}}
+                </ion-badge>
+              </ion-item>
+
+              <ion-item-options side="end">
+                <ion-item-option (click)="editarEgreso(egreso, egresoConcepto.descripcion)">
+                  <ion-icon
+                    slot="icon-only"
+                    name="create"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+
+              <ion-item-options side="start">
+                <ion-item-option
+                  color="danger"
+                  (click)="eliminarConfirm(egreso)">
+                  <ion-icon
+                    slot="icon-only"
+                    name="trash"></ion-icon>
+                </ion-item-option>
+              </ion-item-options>
+
+            </ion-item-sliding>
+          </ion-list>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab
+    (click)="crearEgreso()"
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

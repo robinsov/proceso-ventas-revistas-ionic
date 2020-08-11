@@ -29,6 +29,16 @@ export class SidebarService {
         "name": "Deudores",
         "redirecTo": "/tabs/deudores"
     },
+    {
+        "icon": "trending-up-outline",
+        "name": "Ingresos",
+        "redirecTo": "/tabs/ingresos"
+    },
+    {
+        "icon": "trending-down-outline",
+        "name": "Egresos",
+        "redirecTo": "/tabs/egresos"
+    },
   ]
 
 }

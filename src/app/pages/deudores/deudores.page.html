@@ -9,7 +9,9 @@
   </ion-searchbar>
 
   <ion-list>
-    <ion-card *ngFor="let deudor of deudores">
+    <ion-card
+      *ngFor="let deudor of deudores"
+      [routerLink]="['/tabs/tab3', deudor.cliente['_id'] ]">
       <ion-item>
         <ion-card-header>
           <ion-card-subtitle>{{deudor.fechaCreacion}}</ion-card-subtitle>
@@ -34,4 +36,16 @@
       </ion-item>
     </ion-card>
   </ion-list>
+
+  <ion-refresher
+    slot="fixed"
+    (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent"
+      refreshingText="Recargando datos...">
+    </ion-refresher-content>
+  </ion-refresher>
+
 </ion-content>
